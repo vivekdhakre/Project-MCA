@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +33,9 @@ public class LoginServlet extends HttpServlet {
                 pst.setString(2, password);
                 ResultSet rst = pst.executeQuery();
                 if (rst != null && rst.next()) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("user", rst.getString(1));
+                    session.setAttribute("role", rst.getString(2));
                     response.sendRedirect("home");
                 } else {
                     response.sendRedirect("login?status=true");

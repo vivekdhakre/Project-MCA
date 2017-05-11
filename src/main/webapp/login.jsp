@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <link rel="stylesheet" href="css/style1.css">
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-ui-1.10.0.custom.js"></script>
     <title>Product Sale Report</title>
 </head>
 <body>
 <div class="login-container">
     <form action="loginservlet" method="post">
         <p class="username">
-            <label for="username">User Name:</label>
+            <label for="username">User:</label>
             <input type="text" name="username" id="username" placeholder="Enter Username" required="required">
         </p>
         <p class="password">
