@@ -7,40 +7,40 @@
     <title>Campaign Report</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/style.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
-
-
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap.min.css" media="screen">
 
-    <script src="<%=request.getContextPath()%>/js/jquery-1.10.2.js"></script>
-    <%--<script src="<%=request.getContextPath()%>/js/jquery-ui.js"></script>--%>
-    <%--<script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.0.custom.js"></script>--%>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/chart/js/material.js"></script>
-    <%--<script src="<%=request.getContextPath()%>/chart/js/jquery-2.2.2.min.js"></script>--%>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/bootstrap-datepicker.css"
+          media="screen">
 
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/chart/js/material.js"></script>
+
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap-datepicker.js"></script>
 
     <script>
 
         $(function () {
-
             $("#from").datepicker({
-                defaultDate: "+1w",
+                endDate: "today",
                 changeMonth: true,
                 numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#to").datepicker("option", "minDate", selectedDate);
-                }
+                autoclose: true,
+                todayHighlight: true
+            }).on('changeDate', function () {
+                $('#to').datepicker('setStartDate', new Date($(this).val()));
             });
 
             $("#to").datepicker({
-                defaultDate: "+1w",
+                endDate: "today",
                 changeMonth: true,
                 numberOfMonths: 1,
-                onClose: function (selectedDate) {
-                    $("#from").datepicker("option", "maxDate", selectedDate);
-                }
+                autoclose: true,
+                todayHighlight: true
+            }).on('changeDate', function () {
+                $('#from').datepicker('setEndDate', new Date($(this).val()));
             });
         });
 
