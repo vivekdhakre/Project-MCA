@@ -1,30 +1,87 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" ng-app="Dashboard">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <link rel="stylesheet" href="css/style1.css">
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-    <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery-ui-1.10.0.custom.js"></script>
-    <title>Product Sale Report</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Product Sales Stats</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/style.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/font-awesome.css">
+
 </head>
 <body>
-<div class="login-container">
-    <form action="loginservlet" method="post">
-        <p class="username">
-            <label for="username">User:</label>
-            <input type="text" name="username" id="username" placeholder="Enter Username" required="required">
-        </p>
-        <p class="password">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="Enter Password" required="required">
-        </p>
-        <p class="login">
-            <input type="Submit" value="Login">
-        </p>
-    </form>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-icon brand-logo pos-left"></span>
+            <span class="mdl-layout-title mdl-layout--large-screen-only">
+          <small class="mdl-color-text--white">
+            Login
+          </small></span>
+            <div class="mdl-layout-spacer"></div>
+
+
+        </div>
+        <!-- Tabs -->
+    </header>
+    <main class="mdl-layout__content">
+        <div class="auto-1000">
+            <div class="main-container">
+                <div class="report-container">
+                    <h2></h2>
+                    <div class="select-form">
+                        <form action="loginservlet" method="post">
+                            <table>
+                                <tr>
+                                    <td>User Name</td>
+                                    <td>
+                                        <input type="text" name="username" id="username" placeholder="Enter Username"
+                                               required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>to Date</td>
+                                    <td>
+                                        <input type="password" name="password" id="password"
+                                               placeholder="Enter Password" required="required">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2"><input type="Submit" id="sbmtn" value="Login"></td>
+                                </tr>
+
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
-<div class="footer">&copy;2017 All Rights Reserved</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

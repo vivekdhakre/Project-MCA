@@ -1360,7 +1360,7 @@ p span:not(#foo) > input[type=radio]:checked + label {
     margin-left: 344px;
 }
 
-.select-form input[type=text], select {
+.select-form input[type=text], input[type=password], select {
     float: left;
     width: 250px;
     height: 30px;

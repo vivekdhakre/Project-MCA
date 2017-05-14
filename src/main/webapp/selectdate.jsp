@@ -30,7 +30,9 @@
                 autoclose: true,
                 todayHighlight: true
             }).on('changeDate', function () {
-                $('#to').datepicker('setStartDate', new Date($(this).val()));
+                var selectedFdate = new Date($(this).val());
+                var setToEndDate = new Date() > new Date(selectedFdate.setDate(selectedFdate.getDate() + 14)) ? new Date(selectedFdate.setDate(selectedFdate.getDate() + 14)) : new Date();
+                $('#to').datepicker('setEndDate', setToEndDate);
             });
 
             $("#to").datepicker({
@@ -78,7 +80,7 @@
                 <div class="report-container">
                     <h2></h2>
                     <div class="select-form">
-                        <form action="view" method="post">
+                        <form action="stats" method="post">
                             <table>
                                 <tr>
                                     <td>From Date</td>
@@ -96,7 +98,7 @@
                                 <tr>
                                     <td>Campaign</td>
                                     <td>
-                                        <select name="channelid" id="channelid" style="background: white;">
+                                        <select name="pid" id="pid" style="background: white;">
                                             <option value="-1">--Please Select--</option>
                                             <% ResultSet rst = (ResultSet) request.getAttribute("rst");
                                                 while (rst.next()) {
