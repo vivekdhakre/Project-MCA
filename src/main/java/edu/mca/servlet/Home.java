@@ -34,7 +34,7 @@ public class Home extends HttpServlet {
                 PreparedStatement pst = cn.prepareStatement("select id,name from campaign");
                 ResultSet rst = pst.executeQuery();
                 request.setAttribute("rst", rst);
-                RequestDispatcher rd = request.getRequestDispatcher("/selectdate.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsps/selectdate.jsp");
                 rd.forward(request, response);
             } else {
                 response.sendRedirect("login?status=true&msg=Session+Expired+or+Invalid");

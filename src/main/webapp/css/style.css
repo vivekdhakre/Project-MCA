@@ -28,7 +28,7 @@ img {
     margin: auto;
     width: 1124px;
     min-width: 1024px;
-    /* 	overflow-x:scroll; */
+    /*  overflow-x:scroll; */
 }
 .logo {
     float: left;
@@ -809,7 +809,8 @@ label.click-show {
 .download-links a:hover, .download-links a:active {
     border: dashed 1px #666;
 }
-/*	Input Checkbox/radiobox */
+
+/*  Input Checkbox/radiobox */
 .custom-checkbox, .custom-radio {
     position: relative;
     float: left;
@@ -865,7 +866,7 @@ label.click-show {
 }
 /*********************************************/
 
-/*	hour-of-day Checkbox */
+/*  hour-of-day Checkbox */
 .hour-of-day .custom-checkbox {
     position: relative;
     float: left;
@@ -1352,18 +1353,18 @@ p span:not(#foo) > input[type=radio]:checked + label {
 }
 
 .select-form {
-    /* 	float:left; */
-    width: 35%;
+    float: left;
+    width: 50%;
     padding: 20px 0;
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 36px;
-    margin-left: 344px;
+    margin-top: 60px;
+    margin-left: 280px;
 }
 
 .select-form input[type=text], input[type=password], select {
     float: left;
-    width: 250px;
-    height: 30px;
+    width: 299px;
+    height: 40px;
     border: solid 1px #999;
     padding: 0 5px;
     color: #104d69;

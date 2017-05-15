@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>Product Sales Stats</title>
+    <title>Product Sales Dashboard</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/style.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/font-awesome.css">
-
 </head>
 <body>
 
@@ -19,7 +18,7 @@
             <span class="mdl-layout-icon brand-logo pos-left"></span>
             <span class="mdl-layout-title mdl-layout--large-screen-only">
           <small class="mdl-color-text--white">
-            Login
+            Product Sales Dashboard - Login
           </small></span>
             <div class="mdl-layout-spacer"></div>
 
@@ -36,14 +35,14 @@
                         <form action="loginservlet" method="post">
                             <table>
                                 <tr>
-                                    <td>User Name</td>
+                                    <td style="width:30%;text-align: left;"><label>User Name</label></td>
                                     <td>
                                         <input type="text" name="username" id="username" placeholder="Enter Username"
                                                required="required">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>to Date</td>
+                                    <td style="width:30%;text-align: left;"><label>Password</label></td>
                                     <td>
                                         <input type="password" name="password" id="password"
                                                placeholder="Enter Password" required="required">

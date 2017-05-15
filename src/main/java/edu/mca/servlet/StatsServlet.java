@@ -90,6 +90,13 @@ public class StatsServlet extends HttpServlet {
                 request.setAttribute("cityWiseMap", gson.toJson(cityWiseMap));
                 request.setAttribute("dateWiseMap", gson.toJson(dateWiseMap));
 
+//              Get campaign Name
+                PreparedStatement pst1 = cn.prepareStatement("select name from campaign where id=?");
+                pst1.setLong(1, Long.valueOf(pid));
+                rst = pst1.executeQuery();
+                if (rst.next()) request.setAttribute("campaignName", rst.getString(1));
+
+
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsps/stats.jsp");
                 rd.forward(request, response);
             } else {

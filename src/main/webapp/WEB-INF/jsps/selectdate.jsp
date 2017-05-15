@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>Campaign Report</title>
+    <title>Product Sales Dashboard</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/style.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
@@ -55,12 +55,14 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-icon brand-logo pos-left"></span>
             <span class="mdl-layout-title mdl-layout--large-screen-only">
-					<small class="mdl-color-text--white">
-						Select Date Range for Stats
-					</small></span>
+				<small class="mdl-color-text--white">
+					Select Date Range for Stats
+				</small>
+			</span>
             <div class="mdl-layout-spacer"></div>
+            <span class="mdl-layout-icon brand-logo pos-left"><img
+                    src="<%=request.getContextPath()%>/images/home-logo.jpg" onclick="location.href='home'"></span>
 
             <button id="demo-menu-lower-right"
                     class="mdl-button mdl-js-button mdl-button--icon">
@@ -69,7 +71,9 @@
 
             <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                 for="demo-menu-lower-right">
+                <li class="mdl-menu__item" onclick="location.href='home'">Home</li>
                 <li class="mdl-menu__item" onclick="location.href='logout'">Log Out</li>
+
             </ul>
         </div>
         <!-- Tabs -->
@@ -83,20 +87,20 @@
                         <form action="stats" method="post">
                             <table>
                                 <tr>
-                                    <td>From Date</td>
+                                    <td style="width:30%;text-align: left;"><label>From Date</label></td>
                                     <td><input type="text" name="from" id="from"
                                                style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>to Date</td>
+                                    <td style="width:30%;text-align: left;"><label>To Date</label></td>
                                     <td><input type="text" name="to" id="to"
                                                style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td>Campaign</td>
+                                    <td style="width:30%;text-align: left;"><label>Campaign</label></td>
                                     <td>
                                         <select name="pid" id="pid" style="background: white;">
                                             <option value="-1">--Please Select--</option>

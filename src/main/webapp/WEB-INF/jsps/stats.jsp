@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>Campaign Report</title>
+    <title>Product Sales Dashboard</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/style.css" type="text/css">
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/chart/js/material.js"></script>
@@ -16,13 +16,14 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-icon brand-logo pos-left"></span>
             <span class="mdl-layout-title mdl-layout--large-screen-only">
 					<small class="mdl-color-text--white">
-						Stats Datewise and Citywise
+						${campaignName} - Stats Datewise and Citywise
 					</small>
             </span>
             <div class="mdl-layout-spacer"></div>
+            <span class="mdl-layout-icon brand-logo pos-left"><img
+                    src="<%=request.getContextPath()%>/images/home-logo.jpg" onclick="location.href='home'"></span>
 
             <button id="demo-menu-lower-right"
                     class="mdl-button mdl-js-button mdl-button--icon">
@@ -75,14 +76,12 @@
 
         var genJson = <%=request.getAttribute("dateWiseMap")%>;
 
-        console.log(genJson);
-
         $('#datewise_stats').highcharts({
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Coupon Generation Date Wise'
+                text: '${campaignName} Stats - Datewise'
             },
             credits: {
                 enabled: false,
@@ -130,14 +129,12 @@
 
         var genJson = <%=request.getAttribute("cityWiseMap")%>;
 
-        console.log(genJson);
-
         $('#citywise_stats').highcharts({
             chart: {
                 type: 'column'
             },
             title: {
-                text: 'Coupon Generation Date Wise'
+                text: '${campaignName} Stats - Citywise'
             },
             credits: {
                 enabled: false,
