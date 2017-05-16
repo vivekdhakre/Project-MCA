@@ -74,7 +74,9 @@
 
     $(function () {
 
-        var genJson = <%=request.getAttribute("dateWiseMap")%>;
+        var datewiseKeys = <%=request.getAttribute("datewiseKeys")%>;
+        var datewiseValues = <%=request.getAttribute("datewiseValues")%>;
+
 
         $('#datewise_stats').highcharts({
             chart: {
@@ -88,9 +90,9 @@
                 text: '',
                 href: ''
             },
-            colors: ['rgb(63,81,181)', '#FF1744'],
+            colors: ['#8BC34A', '#673AB7', '#009688', '#FF1744', '#3F51B5', '#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'],
             xAxis: {
-                categories: Object.keys(genJson),
+                categories: datewiseKeys,
                 labels: {
                     rotation: -90
                 },
@@ -116,18 +118,15 @@
                     borderWidth: 0
                 }
             },
-            series: [{
-                name: 'Datewise States',
-                data: Object.values(genJson)
-
-            }]
+            series: datewiseValues
         });
     });
 
 
     $(function () {
 
-        var genJson = <%=request.getAttribute("cityWiseMap")%>;
+        var citywiseKeys = <%=request.getAttribute("citywiseKeys")%>;
+        var citywiseValues = <%=request.getAttribute("citywiseValues")%>;
 
         $('#citywise_stats').highcharts({
             chart: {
@@ -141,9 +140,9 @@
                 text: '',
                 href: ''
             },
-            colors: ['#FF1744'],
+            colors: ['#2196F3', '#03A9F4', '#00BCD4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722', '#795548', '#607D8B'],
             xAxis: {
-                categories: Object.keys(genJson),
+                categories: citywiseKeys,
                 labels: {
                     rotation: -90
                 },
@@ -169,11 +168,7 @@
                     borderWidth: 0
                 }
             },
-            series: [{
-                name: 'Citywise States',
-                data: Object.values(genJson)
-
-            }]
+            series: citywiseValues
         });
     });
 

@@ -1,8 +1,8 @@
--- MySQL dump 10.14  Distrib 5.5.55-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.16  Distrib 10.1.18-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: psd
 -- ------------------------------------------------------
--- Server version	5.5.55-MariaDB-1~trusty
+-- Server version	10.1.18-MariaDB-1~xenial
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,31 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `Stores`
+--
+
+DROP TABLE IF EXISTS `Stores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Stores` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Stores`
+--
+
+LOCK TABLES `Stores` WRITE;
+/*!40000 ALTER TABLE `Stores` DISABLE KEYS */;
+INSERT INTO `Stores` VALUES (1,'Big Bazaar','2017-05-16 15:31:44'),(2,'Spencer','2017-05-16 15:31:50'),(3,'Reliance','2017-05-16 15:31:58');
+/*!40000 ALTER TABLE `Stores` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `campaign`
@@ -41,6 +66,31 @@ INSERT INTO `campaign` VALUES (1,'Bru Coffee','2017-05-11 07:04:17'),(2,'Nescafe
 UNLOCK TABLES;
 
 --
+-- Table structure for table `citys`
+--
+
+DROP TABLE IF EXISTS `citys`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `citys` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `citys`
+--
+
+LOCK TABLES `citys` WRITE;
+/*!40000 ALTER TABLE `citys` DISABLE KEYS */;
+INSERT INTO `citys` VALUES (1,'Gwalior','2017-05-16 17:31:31'),(2,'Pune','2017-05-16 17:31:37'),(3,'Mumbai','2017-05-16 17:31:41'),(4,'Delhi','2017-05-16 17:31:46'),(5,'Noida','2017-05-16 17:31:50'),(6,'Nashik','2017-05-16 17:31:56'),(7,'Agra','2017-05-16 17:32:03');
+/*!40000 ALTER TABLE `citys` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sold`
 --
 
@@ -54,6 +104,7 @@ CREATE TABLE `sold` (
   `count` int(11) DEFAULT NULL,
   `city` varchar(20) DEFAULT NULL,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `store` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,7 +115,7 @@ CREATE TABLE `sold` (
 
 LOCK TABLES `sold` WRITE;
 /*!40000 ALTER TABLE `sold` DISABLE KEYS */;
-INSERT INTO `sold` VALUES (1,1,'9971361819',1,'Delhi','2017-05-11 07:13:39'),(2,1,'9669509954',1,'Gwalior','2017-05-11 07:14:06'),(3,1,'9669509954',10,'Gwalior','2017-05-11 07:14:17');
+INSERT INTO `sold` VALUES (1,1,'9971361819',1,'Delhi','2017-05-16 15:01:25','Big Bazaar'),(2,1,'9669509954',1,'Gwalior','2017-05-16 15:01:41','Spencer'),(3,1,'9669509954',10,'Gwalior','2017-05-16 15:01:51','Reliance');
 /*!40000 ALTER TABLE `sold` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-11 12:45:26
+-- Dump completed on 2017-05-17  1:09:43
