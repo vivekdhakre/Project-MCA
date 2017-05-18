@@ -2,6 +2,7 @@ package edu.mca.servlet;
 
 import com.google.gson.Gson;
 import edu.mca.util.DbConnection;
+import edu.mca.util.Response;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -67,24 +68,27 @@ public class StatsServlet extends HttpServlet {
                 List<Object> datewiseValues = new LinkedList<>();
 
                 Map<String, List<Integer>> mp = new HashMap<>();
+
+                Map<String, List<Response>> dateWiseTableMap = new LinkedHashMap<>();
+
                 do {
                     Calendar c = Calendar.getInstance();
                     c.setTime(fd1);
                     c.add(Calendar.DATE, i++);
                     nextD = c.getTime();
 
-                    PreparedStatement pst = cn.prepareStatement("select store, sum(count) from sold where created_on between ? and ? group by store");
+                    PreparedStatement pst = cn.prepareStatement("select store, sum(count),count(*) from sold where created_on between ? and ? group by store");
                     pst.setTimestamp(1, new java.sql.Timestamp(format2.parse(format2.format(format2.parse(format1.format(nextD) + " 00:00:00"))).getTime()));
                     pst.setTimestamp(2, new java.sql.Timestamp(format2.parse(format2.format(format2.parse(format1.format(nextD) + " 23:59:59"))).getTime()));
 
                     ResultSet rst = pst.executeQuery();
 
                     Map<String, Integer> map = new LinkedHashMap<>();
-
+                    List<Response> responses = new ArrayList<>();
                     while (rst.next()) {
                         map.put(rst.getString(1), rst.getInt(2));
+                        responses.add(new Response(rst.getString(1), rst.getInt(2), rst.getInt(3)));
                     }
-//                    List<Object> list = new ArrayList<>();
 
                     storeList.forEach(s -> {
                         try {
@@ -110,6 +114,8 @@ public class StatsServlet extends HttpServlet {
                     });
 
                     datewiseKeys.add(format3.format(nextD));
+                    if (responses != null && responses.size() > 0)
+                        dateWiseTableMap.put(format3.format(nextD), responses);
                 } while (!td1.equals(nextD));
 
                 mp.forEach((m, n) -> {
@@ -120,6 +126,7 @@ public class StatsServlet extends HttpServlet {
                 });
                 request.setAttribute("datewiseKeys", gson.toJson(datewiseKeys));
                 request.setAttribute("datewiseValues", gson.toJson(datewiseValues));
+                request.setAttribute("dateWiseTableMap", dateWiseTableMap);
 
                 PreparedStatement preparedStatement1 = cn.prepareStatement("select distinct city from sold where campaign_fkey=?");
                 preparedStatement1.setLong(1, Long.valueOf(pid.trim()));
@@ -127,10 +134,10 @@ public class StatsServlet extends HttpServlet {
                 List<String> citywiseKeys = new LinkedList<>();
                 List<Object> citywiseValues = new LinkedList<>();
 
-
+                Map<String, List<Response>> cityWiseTableMap = new LinkedHashMap<>();
                 Map<String, List<Integer>> mp1 = new HashMap<>();
                 while (citiesRst.next()) {
-                    PreparedStatement pst = cn.prepareStatement("select store,sum(count) from sold where campaign_fkey=? and city=? and created_on between ? and ? group by store");
+                    PreparedStatement pst = cn.prepareStatement("select store,sum(count),count(*) from sold where campaign_fkey=? and city=? and created_on between ? and ? group by store");
                     pst.setLong(1, Long.valueOf(pid));
                     pst.setString(2, citiesRst.getString(1));
                     pst.setTimestamp(3, new java.sql.Timestamp(format2.parse(format2.format(format2.parse(format1.format(fd1) + " 00:00:00"))).getTime()));
@@ -139,9 +146,11 @@ public class StatsServlet extends HttpServlet {
 
                     Map<String, Integer> map = new LinkedHashMap<>();
 
+                    List<Response> responses = new ArrayList<>();
                     while (rst.next()) {
                         map.put(rst.getString(1), rst.getInt(2));
-                        System.out.println(rst.getString(1) + " | " + rst.getString(2));
+                        responses.add(new Response(rst.getString(1), rst.getInt(2), rst.getInt(3)));
+
                     }
 
                     storeList.forEach(s -> {
@@ -165,6 +174,8 @@ public class StatsServlet extends HttpServlet {
 
                     });
                     citywiseKeys.add(citiesRst.getString(1));
+                    if (responses != null && responses.size() > 0)
+                        cityWiseTableMap.put(citiesRst.getString(1), responses);
                 }
 
                 mp1.forEach((m, n) -> {
@@ -176,6 +187,7 @@ public class StatsServlet extends HttpServlet {
                 });
                 request.setAttribute("citywiseKeys", gson.toJson(citywiseKeys));
                 request.setAttribute("citywiseValues", gson.toJson(citywiseValues));
+                request.setAttribute("cityWiseTableMap", cityWiseTableMap);
 
 //              Get campaign Name
                 PreparedStatement pst1 = cn.prepareStatement("select name from campaign where id=?");

@@ -1,3 +1,6 @@
+<%@ page import="edu.mca.util.Response" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html>
 <html lang="en" ng-app="Dashboard">
 <head>
@@ -53,13 +56,111 @@
                         <div id="datewise_stats"
                              style="width: 100%; min-width: 250px; max-width: 600px; margin: 0 auto"></div>
                     </div>
+
+
+                    <table class="mdl-data-table mdl-js-data-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Date</th>
+                            <th class="mdl-data-table__cell--non-numeric">Store</th>
+                            <th class="mdl-data-table__cell--non-numeric">No of User</th>
+                            <th class="mdl-data-table__cell--non-numeric">Product Count</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            Map<String, List<Response>> dateWiseTableMap = (Map<String, List<Response>>) request.getAttribute("dateWiseTableMap");
+
+                            for (Map.Entry<String, List<Response>> map : dateWiseTableMap.entrySet()) {
+                        %>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"
+                                rowspan="<%=map.getValue().size()%>"><%=map.getKey()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getStoreName()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getCount()%>
+                            </td>
+
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getSum()%>
+                            </td>
+                        </tr>
+                        <%
+                            for (int i = 1; i < map.getValue().size(); i++) {
+                        %>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getStoreName()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getCount()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getSum()%>
+                            </td>
+                        </tr>
+                        <%}%>
+                        <%
+                            }
+                        %>
+
+                        </tbody>
+                    </table>
+
+
                 </div>
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop mdl-cell--12-col-phone mdl-cell--4-col-tablet demo-card-square mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__supporting-text">
                         <div id="citywise_stats"
                              style="width: 100%; min-width: 250px; max-width: 600px; height: 400px; margin: 0 auto"></div>
                     </div>
+
+
+                    <table class="mdl-data-table mdl-js-data-table" width="100%">
+                        <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Date</th>
+                            <th class="mdl-data-table__cell--non-numeric">Store</th>
+                            <th class="mdl-data-table__cell--non-numeric">No of User</th>
+                            <th class="mdl-data-table__cell--non-numeric">Product Count</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%
+                            Map<String, List<Response>> cityWiseTableMap = (Map<String, List<Response>>) request.getAttribute("cityWiseTableMap");
+
+                            for (Map.Entry<String, List<Response>> map : cityWiseTableMap.entrySet()) {
+                        %>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"
+                                rowspan="<%=map.getValue().size()%>"><%=map.getKey()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getStoreName()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getCount()%>
+                            </td>
+
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(0).getSum()%>
+                            </td>
+                        </tr>
+                        <%
+                            for (int i = 1; i < map.getValue().size(); i++) {
+                        %>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getStoreName()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getCount()%>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric"><%=map.getValue().get(i).getSum()%>
+                            </td>
+                        </tr>
+                        <%}%>
+                        <%
+                            }
+                        %>
+
+                        </tbody>
+                    </table>
                 </div>
+
+
             </div>
         </section>
     </main>
