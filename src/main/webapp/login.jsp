@@ -44,14 +44,11 @@
             <!-- Title -->
             <span class="mdl-layout-icon brand-logo pos-left"></span>
             <span class="mdl-layout-title mdl-layout--large-screen-only">
-          <small class="mdl-color-text--white">
-            Product Sales Dashboard - Login
-          </small></span>
+                      <small class="mdl-color-text--white">
+                        Product Sales Dashboard - Login
+                      </small></span>
             <div class="mdl-layout-spacer"></div>
-
-
         </div>
-        <!-- Tabs -->
     </header>
     <main class="mdl-layout__content">
         <div class="auto-1000">
@@ -62,14 +59,15 @@
                         <form action="loginservlet" method="post">
                             <table>
                                 <tr>
-                                    <td style="width:30%;text-align: left;"><label>User Name</label></td>
+                                    <td style="width:30%;text-align: left;">
+                                        <label>User Name</label></td>
                                     <td>
-                                        <input type="text" name="username" id="username" placeholder="Enter Username"
-                                        >
+                                        <input type="text" name="username" id="username" placeholder="Enter Username"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="width:30%;text-align: left;"><label>Password</label></td>
+                                    <td style="width:30%;text-align: left;">
+                                        <label>Password</label></td>
                                     <td>
                                         <input type="password" name="password" id="password"
                                                placeholder="Enter Password">
@@ -79,7 +77,6 @@
                                 <tr>
                                     <td colspan="2"><input type="Submit" id="sbmtn" value="Login"></td>
                                 </tr>
-
                             </table>
                         </form>
                     </div>
