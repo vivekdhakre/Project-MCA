@@ -22,6 +22,36 @@
 
     <script>
 
+        $(document).ready(function () {
+            $('#sbmtn').click(function () {
+
+                var from = $("#from").val();
+                if (from == '') {
+                    alert("Please Enter From Date");
+                    $("#from").focus();
+                    return false;
+                }
+
+                var to = $("#to").val();
+                if (from == '') {
+                    alert("Please Enter To Date");
+                    $("#to").focus();
+                    return false;
+                }
+
+                var pid = $("#pid").val();
+                if (pid == '-1') {
+                    alert("Please Select Product");
+                    $("#pid").focus();
+                    return false;
+                }
+
+                return true;
+            });
+        });
+
+
+
         $(function () {
             $("#from").datepicker({
                 endDate: "today",
@@ -31,8 +61,10 @@
                 todayHighlight: true
             }).on('changeDate', function () {
                 var selectedFdate = new Date($(this).val());
-                var setToEndDate = new Date() > new Date(selectedFdate.setDate(selectedFdate.getDate() + 14)) ? new Date(selectedFdate.setDate(selectedFdate.getDate() + 14)) : new Date();
-                $('#to').datepicker('setEndDate', setToEndDate);
+                var endDate = new Date(selectedFdate.setDate(selectedFdate.getDate() + 14));
+                $('#to').datepicker('setStartDate', new Date($(this).val()));
+                var endDate = new Date() > endDate ? endDate : new Date($(this).val());
+                $('#to').datepicker('setEndDate', endDate);
             });
 
             $("#to").datepicker({
@@ -43,6 +75,10 @@
                 todayHighlight: true
             }).on('changeDate', function () {
                 $('#from').datepicker('setEndDate', new Date($(this).val()));
+                var selectedTdate = new Date($(this).val());
+                var startDate = new Date(selectedTdate.setDate(selectedTdate.getDate() - 14));
+                $('#from').datepicker('setStartDate', startDate);
+
             });
         });
 
@@ -89,18 +125,20 @@
                                 <tr>
                                     <td style="width:30%;text-align: left;"><label>From Date</label></td>
                                     <td><input type="text" name="from" id="from"
-                                               style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%">
+                                               style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%"
+                                               readonly>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width:30%;text-align: left;"><label>To Date</label></td>
                                     <td><input type="text" name="to" id="to"
-                                               style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%">
+                                               style="background:#fff url(<%=request.getContextPath()%>/images/cal.png) no-repeat right 50%"
+                                               readonly>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td style="width:30%;text-align: left;"><label>Campaign</label></td>
+                                    <td style="width:30%;text-align: left;"><label>Product</label></td>
                                     <td>
                                         <select name="pid" id="pid" style="background: white;">
                                             <option value="-1">--Please Select--</option>
@@ -128,4 +166,3 @@
 </div>
 </body>
 </html>
-

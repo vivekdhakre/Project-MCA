@@ -8,7 +8,34 @@
     <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/chart/css/material.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/font-awesome.css">
+    <script src="<%=request.getContextPath()%>/js/jquery-1.10.2.js"></script>
+
 </head>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sbmtn').click(function () {
+
+            var username = $("#username").val();
+            if (username == '') {
+                alert("Please Enter User Name");
+                $("#username").focus();
+                return false;
+            }
+
+            var pwd = $("#password").val();
+            if (pwd == '') {
+                alert("Please Enter Password");
+                $("#pwd").focus();
+                return false;
+            }
+            return true;
+        });
+    });
+
+
+</script>
+
 <body>
 
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -38,14 +65,14 @@
                                     <td style="width:30%;text-align: left;"><label>User Name</label></td>
                                     <td>
                                         <input type="text" name="username" id="username" placeholder="Enter Username"
-                                               required="required">
+                                        >
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width:30%;text-align: left;"><label>Password</label></td>
                                     <td>
                                         <input type="password" name="password" id="password"
-                                               placeholder="Enter Password" required="required">
+                                               placeholder="Enter Password">
                                     </td>
                                 </tr>
 

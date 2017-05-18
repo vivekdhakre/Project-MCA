@@ -180,7 +180,6 @@ public class StatsServlet extends HttpServlet {
 
                 mp1.forEach((m, n) -> {
                     Map<String, Object> map1 = new LinkedHashMap<>();
-                    System.out.println("m: " + m + " | n: " + n);
                     map1.put("name", m);
                     map1.put("data", n);
                     citywiseValues.add(map1);
